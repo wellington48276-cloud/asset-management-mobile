@@ -523,3 +523,213 @@
   .login-panel{width:min(76vw,250px);padding:12px}
   .login-panel__logo-box{width:33px;height:33px;flex-basis:33px}
 }
+
+
+/* =========================================================
+   AJUSTE MOBILE: IMAGEM INTEGRADA + LOGIN MAIS COMPACTO
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+/* A imagem institucional ocupa melhor telas estreitas sem criar faixas laterais.
+   O pseudo-elemento ampliado preenche o fundo e a camada principal mantém
+   o conteúdo central do brasão visível. */
+.ambient-bg,
+.bg-image {
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+/* Remove limites que deixavam a área central estreita no celular. */
+.app-main {
+  width: 100%;
+  max-width: none;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.login-screen {
+  width: 100%;
+  min-height: calc(100dvh - 132px);
+  padding: 12px;
+  display: grid;
+  place-items: center;
+}
+
+/* Login menor para revelar mais da arte institucional. */
+.login-panel {
+  width: min(82vw, 292px);
+  padding: 15px 14px 14px;
+  border-radius: 17px;
+  background: rgba(5, 15, 30, .48);
+  border-color: rgba(255, 255, 255, .24);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.login-panel__brand {
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.login-panel__brand h2 {
+  font-size: .94rem;
+  line-height: 1.15;
+}
+
+.login-panel__brand p {
+  margin-top: 2px;
+  font-size: .67rem;
+}
+
+.login-panel__icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.login-panel__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 3px;
+}
+
+.login-form {
+  gap: 10px;
+}
+
+.login-form label {
+  gap: 5px;
+}
+
+.login-form label > span {
+  font-size: .68rem;
+}
+
+.login-form input {
+  min-height: 39px;
+  padding: 0 11px;
+  border-radius: 10px;
+  font-size: .86rem;
+}
+
+.login-panel__submit {
+  min-height: 40px;
+  margin-top: 1px;
+  border-radius: 10px;
+  font-size: .76rem;
+}
+
+/* Evita faixas vazias em celulares altos/estreitos e deixa o brasão maior. */
+@media (max-width: 600px) {
+  .ambient-bg,
+  .bg-image {
+    background-size: auto 106dvh !important;
+    background-position: center 48% !important;
+  }
+
+  .app-shell {
+    min-height: 100dvh;
+  }
+
+  .topbar {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .app-footer {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Em celulares muito estreitos, amplia um pouco mais a imagem para eliminar
+   qualquer sobra lateral, mantendo o centro institucional aparente. */
+@media (max-width: 390px) {
+  .ambient-bg,
+  .bg-image {
+    background-size: auto 112dvh !important;
+    background-position: center 46% !important;
+  }
+
+  .login-panel {
+    width: min(80vw, 274px);
+    padding: 13px 12px;
+  }
+
+  .login-panel__brand {
+    margin-bottom: 10px;
+  }
+
+  .login-form {
+    gap: 8px;
+  }
+
+  .login-form input {
+    min-height: 37px;
+  }
+
+  .login-panel__submit {
+    min-height: 38px;
+  }
+}
+
+/* No modo paisagem, usa largura total sem deformar a imagem. */
+@media (orientation: landscape) and (max-height: 560px) {
+  .ambient-bg,
+  .bg-image {
+    background-size: cover !important;
+    background-position: center center !important;
+  }
+
+  .login-screen {
+    min-height: calc(100dvh - 92px);
+    padding: 8px;
+  }
+
+  .login-panel {
+    width: min(74vw, 300px);
+    padding: 12px;
+  }
+}
+
+
+/* O visual final do login é controlado por src/index.css.
+   Estas regras evitam que estilos antigos sobrescrevam o layout final. */
+.login-screen {
+  width: 100%;
+}
+
+.login-panel {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.login-panel__header {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.login-panel__coat {
+  display: block;
+  object-fit: contain;
+}
