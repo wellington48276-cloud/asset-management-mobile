@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { Layers, ArrowRight, Hash } from 'lucide-react';
+import { Layers, ArrowRight, Hash, Sparkles } from 'lucide-react';
 
-export default function BatchScreen({ usuarioAtual, onStartBatch }) {
+export default function BatchScreen({ usuarioAtual, onStartBatch, playSound }) {
   const [init, setInit] = useState('100001');
   const [end, setEnd] = useState('100005');
 
-  const vibrar = () => {
-    if ("vibrate" in navigator) navigator.vibrate(30);
+  const aplicarPreset = (quantidade) => {
+    if (playSound) playSound.playButtonClick();
+    const startNum = parseInt(init, 10) || 100001;
+    setEnd((startNum + quantidade - 1).toString());
   };
 
   const handleStart = (e) => {
     e.preventDefault();
+    if (playSound) playSound.playButtonClick();
+
     const startNum = parseInt(init, 10);
     const endNum = parseInt(end, 10);
 
@@ -24,15 +28,16 @@ export default function BatchScreen({ usuarioAtual, onStartBatch }) {
       chapas.push(i.toString());
     }
 
-    vibrar();
     onStartBatch(chapas);
   };
 
+  const totalCalculado = Math.max(0, (parseInt(end, 10) || 0) - (parseInt(init, 10) || 0) + 1);
+
   return (
-    <div className="system-card">
+    <div className="system-card glass-cyber">
       <div className="card-header">
         <h2>
-          <Layers size={20} />
+          <Layers size={20} className="glow-icon" />
           OFICIAL: {usuarioAtual.toUpperCase()}
         </h2>
         <p>PARÂMETROS DA SEQUÊNCIA DE REGISTROS</p>
@@ -67,8 +72,22 @@ export default function BatchScreen({ usuarioAtual, onStartBatch }) {
           />
         </div>
 
+        <div className="presets-container">
+          <span>ATALHOS DE LOTE:</span>
+          <div className="preset-buttons">
+            <button type="button" className="btn-preset" onClick={() => aplicarPreset(5)}>+5 Chapas</button>
+            <button type="button" className="btn-preset" onClick={() => aplicarPreset(10)}>+10 Chapas</button>
+            <button type="button" className="btn-preset" onClick={() => aplicarPreset(20)}>+20 Chapas</button>
+          </div>
+        </div>
+
+        <div className="batch-summary">
+          <Sparkles size={16} />
+          <span>Total de itens no lote: <strong>{totalCalculado}</strong></span>
+        </div>
+
         <button type="submit" className="btn btn-tech-start">
-          AVANÇAR
+          INICIAR REGISTROS
           <ArrowRight size={18} />
         </button>
       </form>

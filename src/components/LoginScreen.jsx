@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { User, KeyRound, LogIn } from 'lucide-react';
+import { User, KeyRound, LogIn, Cpu, ShieldAlert } from 'lucide-react';
 import { loginUsuario } from '../services/api';
 
-export default function LoginScreen({ onLoginSuccess }) {
+export default function LoginScreen({ onLoginSuccess, playSound }) {
   const [user, setUser] = useState('admin');
   const [pass, setPass] = useState('1234');
   const [loading, setLoading] = useState(false);
-
-  const vibrar = () => {
-    if ("vibrate" in navigator) navigator.vibrate(30);
-  };
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setErrorMsg('');
+    if (playSound) playSound.playButtonClick();
+
     if (!user || !pass) {
-      alert("Por favor, informe credencial e chave de segurança.");
+      setErrorMsg("Informe credencial e chave de segurança.");
       return;
     }
 
@@ -22,28 +22,35 @@ export default function LoginScreen({ onLoginSuccess }) {
     try {
       const res = await loginUsuario(user, pass);
       if (res && res.success) {
-        vibrar();
+        if (playSound) playSound.playSuccessSound();
         const nomeOficial = res.nome || user;
         onLoginSuccess(nomeOficial);
       } else {
-        alert(res?.message || "Acesso negado.");
+        setErrorMsg(res?.message || "Acesso negado.");
       }
     } catch (err) {
-      alert("Falha na comunicação com o servidor de dados.");
+      setErrorMsg("Falha na comunicação com o servidor de dados.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="system-card">
+    <div className="system-card glass-cyber">
       <div className="card-header">
         <h2>
-          <User size={20} />
+          <Cpu size={20} className="glow-icon" />
           Autenticação
         </h2>
         <p>IDENTIFICAÇÃO DO OFICIAL DE PATRIMÔNIO</p>
       </div>
+
+      {errorMsg && (
+        <div className="error-alert">
+          <ShieldAlert size={16} />
+          <span>{errorMsg}</span>
+        </div>
+      )}
 
       <form onSubmit={handleLogin}>
         <div className="input-group">
@@ -78,12 +85,12 @@ export default function LoginScreen({ onLoginSuccess }) {
           {loading ? (
             <>
               <span className="spinner"></span>
-              VALIDANDO...
+              VALIDANDO ACESSO...
             </>
           ) : (
             <>
               <LogIn size={18} />
-              ENTRAR
+              ENTRAR NO SISTEMA
             </>
           )}
         </button>
