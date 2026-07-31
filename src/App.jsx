@@ -84,10 +84,10 @@ export default function App() {
           <div className="system-card glass-cyber" style={{ textAlign: 'center' }}>
             <CheckCircle2 size={64} color="#00f2fe" style={{ margin: '0 auto 16px', filter: 'drop-shadow(0 0 10px #00f2fe)' }} />
             <h2 style={{ color: 'var(--cyber-cyan)', marginBottom: '8px' }}>
-              VISTORIA CONCLUÍDA!
+              LOTE CONCLUÍDO!
             </h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '24px' }}>
-              Todos os registros foram auditados, salvos e adicionados ao seu relatório patrimonial.
+              Todos os registros foram salvos e adicionados ao relatório patrimonial.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>

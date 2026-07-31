@@ -17,14 +17,14 @@ export async function loginUsuario(user, pass) {
   return { success: true, nome: user };
 }
 
-export async function salvarColetaData(vistoriador, chapa, fotoBase64) {
+export async function salvarColetaData(operador, chapa, fotoBase64) {
   if (URL_GOOGLE_SCRIPT && !URL_GOOGLE_SCRIPT.includes("SEU_LINK")) {
     try {
       const response = await fetch(URL_GOOGLE_SCRIPT, {
         method: "POST",
         body: JSON.stringify({
           action: "salvarColeta",
-          vistoriador,
+          vistoriador: operador,
           chapa,
           fotoBase64
         })

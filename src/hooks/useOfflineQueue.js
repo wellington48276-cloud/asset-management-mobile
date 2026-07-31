@@ -24,7 +24,7 @@ export function useOfflineQueue() {
     const novaColeta = {
       id: Date.now().toString(),
       chapa: item.chapa,
-      vistoriador: item.vistoriador,
+      operador: item.operador || item.vistoriador,
       dataHora: new Date().toLocaleString('pt-BR'),
       fotoBase64: item.fotoBase64,
       status: item.synced ? 'SINCRONIZADO' : 'PENDENTE'
@@ -40,8 +40,8 @@ export function useOfflineQueue() {
 
   const exportarCSV = useCallback(() => {
     if (coletas.length === 0) return;
-    const header = "ID;CHAPA;VISTORIADOR;DATA_HORA;STATUS\n";
-    const rows = coletas.map(c => `${c.id};"${c.chapa}";"${c.vistoriador}";"${c.dataHora}";"${c.status}"`).join("\n");
+    const header = "ID;CHAPA;OPERADOR;DATA_HORA;STATUS\n";
+    const rows = coletas.map(c => `${c.id};"${c.chapa}";"${c.operador || c.vistoriador || ''}";"${c.dataHora}";"${c.status}"`).join("\n");
     const csvContent = "data:text/csv;charset=utf-8,\uFEFF" + encodeURIComponent(header + rows);
     
     const link = document.createElement("a");

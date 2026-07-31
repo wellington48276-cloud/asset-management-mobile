@@ -49,25 +49,35 @@ body {
 header {
   background: linear-gradient(135deg, #07162c, #0a2540, var(--primary-blue));
   color: #ffffff;
-  padding: 14px 24px;
+  padding: 12px 16px;
   box-shadow: 0 4px 25px rgba(0, 242, 254, 0.15);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   position: relative;
   z-index: 10;
   border-bottom: 2px solid var(--cyber-cyan);
+  flex-shrink: 0;
 }
 
-.header-title h1 {
-  font-size: 1.1rem;
-  font-weight: 800;
-  letter-spacing: 1.2px;
-  color: #ffffff;
-  text-transform: uppercase;
+.header-title {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
+}
+
+.header-title h1 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-logo-icon {
@@ -76,29 +86,26 @@ header {
 }
 
 .header-sub {
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: 0.65rem;
+  font-weight: 600;
   color: var(--cyber-cyan);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-top: 3px;
+  letter-spacing: 0.3px;
+  margin-top: 2px;
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .live-clock {
-  display: flex;
-  align-items: center;
-  gap: 6px;
   font-size: 0.75rem;
   font-weight: 700;
   color: #e2e8f0;
   background: rgba(0, 242, 254, 0.08);
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 6px;
   border: 1px solid rgba(0, 242, 254, 0.2);
 }
@@ -175,11 +182,12 @@ header {
 .app-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex: 1;
-  padding: 24px 16px;
+  padding: 16px;
   position: relative;
   z-index: 5;
+  overflow-y: auto;
 }
 
 /* SYSTEM CARD GLASS CYBER */
@@ -230,9 +238,10 @@ header {
 .card-header p {
   font-size: 0.75rem;
   color: var(--text-muted);
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-weight: 600;
   margin-top: 4px;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .error-alert {
@@ -464,7 +473,213 @@ header {
   text-shadow: 0 0 12px rgba(251, 192, 45, 0.5);
 }
 
-/* CAMERA HUD CONTAINER */
+/* CAMERA */
+.camera-screen {
+  padding: 20px 16px;
+}
+
+.camera-preview-container {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  max-height: 55vh;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #020617;
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-video {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  max-height: 55vh;
+  object-fit: cover;
+  display: block;
+}
+
+.captured-img {
+  width: 100%;
+  max-height: 55vh;
+  object-fit: contain;
+  display: block;
+}
+
+.camera-permission-box {
+  text-align: center;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.camera-permission-box h3 {
+  color: var(--cyber-cyan);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.camera-permission-box p {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+.camera-native-hint {
+  text-align: center;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.camera-native-hint p {
+  color: var(--cyber-cyan);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.camera-native-hint span {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.camera-error-msg {
+  text-align: center;
+  padding: 24px 16px;
+  color: #fca5a5;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.camera-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  align-items: stretch;
+}
+
+.camera-controls .btn-capture {
+  flex: 1;
+}
+
+.camera-controls .btn-hud-control {
+  flex: 0 0 auto;
+  min-width: 90px;
+}
+
+.camera-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.camera-actions .btn {
+  flex: 1;
+}
+
+/* PHOTO EDITOR */
+.photo-editor {
+  margin-top: 4px;
+}
+
+.photo-editor-header {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--cyber-cyan);
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.photo-editor-viewport {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  touch-action: none;
+  user-select: none;
+}
+
+.photo-editor-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.photo-editor-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.photo-editor-crop {
+  position: absolute;
+  border: 2px solid var(--accent-yellow);
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+  cursor: move;
+}
+
+.crop-handle {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: var(--accent-yellow);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.crop-handle.tl { top: -11px; left: -11px; cursor: nwse-resize; }
+.crop-handle.tr { top: -11px; right: -11px; cursor: nesw-resize; }
+.crop-handle.bl { bottom: -11px; left: -11px; cursor: nesw-resize; }
+.crop-handle.br { bottom: -11px; right: -11px; cursor: nwse-resize; }
+
+.photo-editor-tools {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.btn-tool {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--cyber-cyan);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-tool:hover {
+  border-color: var(--cyber-cyan);
+  background: rgba(0, 242, 254, 0.1);
+}
+
+.photo-editor-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* CAMERA HUD CONTAINER (legacy) */
 .camera-hud-container {
   position: relative;
   width: 100%;
@@ -724,34 +939,31 @@ footer {
   background-color: #020617;
   border-top: 1px solid rgba(0, 242, 254, 0.2);
   color: #94a3b8;
-  padding: 12px 20px;
-  font-size: 0.75rem;
+  padding: 10px 16px;
+  font-size: 0.72rem;
   font-weight: 600;
   position: relative;
   z-index: 10;
-  margin-top: auto;
-}
-
-.footer-content {
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: 12px;
 }
 
-.footer-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.footer-brand {
+  color: var(--text-muted);
+  white-space: nowrap;
 }
 
-.footer-user-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.7rem;
+.footer-user {
   color: var(--cyber-cyan);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50%;
+  text-align: right;
 }
 
 .spinner {
@@ -766,4 +978,27 @@ footer {
 
 @keyframes spin { 
   to { transform: rotate(360deg); } 
+}
+
+@media (max-width: 480px) {
+  .system-card {
+    padding: 20px 14px;
+    border-radius: 12px;
+  }
+
+  .chapa-box strong {
+    font-size: 1.6rem;
+  }
+
+  .photo-editor-viewport {
+    height: 260px;
+  }
+
+  .camera-preview-container {
+    min-height: 240px;
+  }
+
+  .header-title h1 {
+    font-size: 0.82rem;
+  }
 }
