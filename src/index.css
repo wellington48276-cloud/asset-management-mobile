@@ -1,0 +1,492 @@
+:root {
+  font-family: "Plus Jakarta Sans", "Segoe UI", Arial, sans-serif;
+  color: #ffffff;
+  background: #02060d;
+
+  --blue-950: #020b18;
+  --blue-900: #06172d;
+  --blue-800: #0a2748;
+  --blue-700: #0d3d6f;
+  --blue-600: #145aa0;
+  --black: #000000;
+  --yellow: #ffd400;
+  --yellow-strong: #f2c000;
+  --white: #ffffff;
+  --muted: #d7e6f5;
+  --line: rgba(255, 212, 0, 0.78);
+  --panel: rgba(4, 18, 36, 0.84);
+  --glass: rgba(5, 23, 45, 0.72);
+}
+
+* {
+  box-sizing: border-box;
+  font-weight: 700;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  min-height: 100dvh;
+  background: var(--black);
+}
+
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+  color: var(--white);
+}
+
+button,
+input,
+textarea,
+label,
+span,
+p,
+h1,
+h2,
+h3,
+strong,
+b {
+  font: inherit;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+strong,
+b,
+.primary-button,
+.secondary-button,
+.icon-button {
+  font-weight: 800;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  border: 3px solid var(--yellow);
+  background: transparent;
+  overflow: hidden;
+}
+
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100dvh;
+  background:
+    linear-gradient(rgba(2, 11, 24, 0.42), rgba(0, 0, 0, 0.62)),
+    url("/INTERFACE OPACA.jpg") center / cover no-repeat;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-height: 74px;
+  padding: 10px max(16px, env(safe-area-inset-left));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--white);
+  background: linear-gradient(135deg, rgba(2, 11, 24, 0.96), rgba(10, 39, 72, 0.94));
+  border-top: 3px solid var(--yellow);
+  border-bottom: 3px solid var(--yellow);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--yellow);
+}
+
+.brand h1 {
+  margin: 0;
+  color: var(--white);
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+.brand span {
+  display: block;
+  margin-top: 2px;
+  color: var(--yellow);
+  font-size: 0.72rem;
+}
+
+.icon-button {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--yellow);
+  background: var(--black);
+  border: 2px solid var(--yellow);
+  border-radius: 12px;
+}
+
+.icon-button b {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  display: grid;
+  place-items: center;
+  color: var(--black);
+  background: var(--yellow);
+  border-radius: 999px;
+  font-size: 0.67rem;
+}
+
+.app-main {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 14px 32px;
+}
+
+.panel {
+  width: min(100%, 720px);
+  padding: 22px;
+  color: var(--white);
+  background: var(--panel);
+  border: 2px solid var(--yellow);
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.compact {
+  width: min(100%, 500px);
+}
+
+.section-title {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+
+.section-title > svg,
+.section-title h2 {
+  color: var(--yellow);
+}
+
+.section-title h2 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+}
+
+.section-title p,
+.editor-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.form-stack,
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-stack label,
+.field {
+  color: var(--white);
+  font-size: 0.78rem;
+}
+
+.form-stack label span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 7px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 13px 14px;
+  color: var(--white);
+  background: rgba(0, 0, 0, 0.74);
+  border: 2px solid var(--yellow);
+  border-radius: 12px;
+  outline: none;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 3px rgba(255, 212, 0, 0.18);
+}
+
+.primary-button,
+.secondary-button,
+.drawer-actions button,
+.camera-tools button,
+.editor-controls button {
+  min-height: 46px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+}
+
+.primary-button {
+  width: 100%;
+  color: var(--black);
+  background: linear-gradient(135deg, var(--yellow), var(--yellow-strong));
+  border: 2px solid var(--yellow);
+}
+
+.secondary-button {
+  color: var(--white);
+  background: var(--blue-800);
+  border: 2px solid var(--yellow);
+}
+
+.summary,
+.batch-summary,
+.permission-card,
+.progress-box,
+.chapa-box {
+  color: var(--white);
+  background: rgba(6, 23, 45, 0.9);
+  border: 2px solid rgba(255, 212, 0, 0.68);
+  border-radius: 14px;
+}
+
+.progress-track,
+.progress-bar-bg {
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.progress-track i,
+.progress-bar-fill,
+.camera-fullscreen__progress i {
+  background: var(--yellow);
+}
+
+.alert.error {
+  color: var(--white);
+  background: rgba(0, 0, 0, 0.84);
+  border: 2px solid var(--yellow);
+}
+
+.alert.success {
+  color: var(--black);
+  background: var(--yellow);
+  border: 2px solid var(--black);
+}
+
+.app-footer {
+  min-height: 58px;
+  padding: 12px max(16px, env(safe-area-inset-left));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+  background: linear-gradient(135deg, rgba(2, 11, 24, 0.96), rgba(10, 39, 72, 0.94));
+  border-top: 3px solid var(--yellow);
+  border-bottom: 3px solid var(--yellow);
+  box-shadow: 0 -8px 26px rgba(0, 0, 0, 0.34);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+}
+
+.login-screen {
+  width: 100%;
+  min-height: calc(100dvh - 138px);
+  display: grid;
+  place-items: center;
+  padding: 14px;
+}
+
+.login-panel {
+  width: min(calc(100vw - 24px), 560px);
+  padding: 18px;
+  color: var(--white);
+  background: var(--glass);
+  border: 3px solid var(--yellow);
+  border-radius: 18px;
+  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.46);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.login-panel__identity {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.login-panel__coat {
+  width: 86px;
+  height: 86px;
+  flex: 0 0 86px;
+  object-fit: contain;
+  display: block;
+}
+
+.login-panel__heading {
+  min-width: 0;
+}
+
+.login-panel__heading h2 {
+  margin: 0;
+  color: var(--yellow);
+  font-size: clamp(1rem, 3vw, 1.28rem);
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.login-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.login-form label {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.login-form label > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--white);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.login-form input {
+  min-height: 42px;
+  padding: 0 12px;
+  font-size: 0.86rem;
+}
+
+.login-panel__submit {
+  width: auto;
+  min-width: 104px;
+  min-height: 42px;
+  padding: 0 18px;
+  white-space: nowrap;
+}
+
+.drawer,
+.drawer-panel,
+.history-drawer {
+  color: var(--white);
+  background: var(--blue-950);
+  border-color: var(--yellow);
+}
+
+@media (max-width: 680px) {
+  .login-panel {
+    width: calc(100vw - 18px);
+    padding: 15px;
+  }
+
+  .login-panel__identity {
+    gap: 14px;
+  }
+
+  .login-panel__coat {
+    width: 72px;
+    height: 72px;
+    flex-basis: 72px;
+  }
+
+  .login-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .login-panel__submit {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .app-footer {
+    padding: 10px 12px;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .app-shell {
+    border-width: 2px;
+  }
+
+  .topbar,
+  .app-footer {
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+  }
+
+  .login-panel {
+    width: calc(100vw - 12px);
+    padding: 13px;
+    border-radius: 14px;
+  }
+
+  .login-panel__identity {
+    gap: 10px;
+  }
+
+  .login-panel__coat {
+    width: 64px;
+    height: 64px;
+    flex-basis: 64px;
+  }
+
+  .login-panel__heading h2 {
+    font-size: 0.93rem;
+  }
+
+  .login-form {
+    grid-template-columns: 1fr;
+  }
+
+  .login-panel__submit {
+    grid-column: auto;
+  }
+}
