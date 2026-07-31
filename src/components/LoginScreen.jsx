@@ -42,7 +42,7 @@ export default function LoginScreen({ onLoginSuccess, playSound }) {
           <Cpu size={20} className="glow-icon" />
           Autenticação
         </h2>
-        <p>IDENTIFICAÇÃO DO OFICIAL DE PATRIMÔNIO</p>
+        <p>Acesso ao sistema de coleta</p>
       </div>
 
       {errorMsg && (

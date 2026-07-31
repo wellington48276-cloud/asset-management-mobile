@@ -38,9 +38,9 @@ export default function BatchScreen({ usuarioAtual, onStartBatch, playSound }) {
       <div className="card-header">
         <h2>
           <Layers size={20} className="glow-icon" />
-          OFICIAL: {usuarioAtual.toUpperCase()}
+          Configurar Lote
         </h2>
-        <p>PARÂMETROS DA SEQUÊNCIA DE REGISTROS</p>
+        <p>Operador: {usuarioAtual}</p>
       </div>
 
       <form onSubmit={handleStart}>
