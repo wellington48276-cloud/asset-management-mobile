@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Production build
+dist
+build
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment & IDE
+.env
+.env.local
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
