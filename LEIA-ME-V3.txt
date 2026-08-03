@@ -1,0 +1,16 @@
+VERSAO 3.0 - REDESIGN VISUAL
+
+Alteracoes principais:
+- nova identidade visual corporativa mobile-first;
+- login compacto com brasao preservado e fundo institucional preservado;
+- tela de preparacao do servico redesenhada;
+- camera em tela cheia com controles maiores;
+- editor de recorte limpo e moderno;
+- historico reorganizado;
+- termos Patrimoniador e Servico de Rua preservados;
+- integracao existente com Google Apps Script e Drive mantida.
+
+Para usar:
+1. Substitua o projeto atual por este projeto.
+2. Execute npm install.
+3. Execute npm run dev ou publique normalmente na Vercel.
