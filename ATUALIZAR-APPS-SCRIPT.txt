@@ -1,0 +1,12 @@
+ATUALIZAÇÃO OBRIGATÓRIA DO APPS SCRIPT — v1.1.0
+
+1. Abra seu projeto do Google Apps Script.
+2. Substitua o Code.gs antigo pelo Code.gs deste pacote.
+3. Confirme que Drive API está ativada em Serviços.
+4. Execute a função prepararSistema uma vez.
+5. Autorize o acesso solicitado.
+6. Vá em Implantar > Gerenciar implantações > Editar.
+7. Selecione Nova versão e clique em Implantar.
+
+Não é necessário configurar login pelo Google.
+O login atual por usuário e senha foi mantido e agora usa token de sessão.
