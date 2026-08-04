@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowLeft, Camera, CheckCircle2, LoaderCircle } from 'lucide-react';
+import { ArrowLeft, Camera, CheckCircle2, Loader2 } from 'lucide-react';
 import { getDraftsForService } from '../services/db';
 
 function ReviewThumbnail({ draft, plate }) {
@@ -66,7 +66,7 @@ export default function ServiceReview({ service, onBack, onGoTo, onFinalize }) {
 
       <div className="review-screen__content">
         {loading ? (
-          <div className="review-loading"><LoaderCircle className="spin" /> Carregando fotos...</div>
+          <div className="review-loading"><Loader2 className="spin" /> Carregando fotos...</div>
         ) : (
           <div className="review-grid">
             {service.plates.map((plate, index) => {
